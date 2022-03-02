@@ -1,1 +1,4 @@
 pyvis
+sparqlwrapper
+flask
+networkx

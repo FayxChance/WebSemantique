@@ -10,10 +10,9 @@ template_dir = os.path.abspath('./templates')
 
 app = Flask(__name__, template_folder=template_dir)
 
-
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/date/<date>')
 def date(date):
@@ -33,7 +32,6 @@ def date(date):
     nt.from_nx(G)
     nt.save_graph("./templates/network.html")
     return render_template('visualization.html')
-
 
 @app.route('/movie/<movie>')
 def visualization(movie):

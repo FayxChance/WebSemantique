@@ -8,9 +8,10 @@ headers = """
 
 def getActors(movie):
     return """
-        SELECT DISTINCT ?actors_name
+        SELECT DISTINCT ?film_name ?actors_name
         WHERE {
             ?film rdfs:label \"""" + movie + """\".
+            ?film rdfs:label ?film_name.
             ?film lmdb:actor ?actors.
             ?actors rdfs:label ?actors_name.
         }

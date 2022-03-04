@@ -24,9 +24,10 @@ class SparQL():
         return sparql.query().convert()
 
     def getDataFromJson(self, dict, reference):
+        self.prettyPrintDictAsJson(dict)
         lambdaSwitch = {
-            "actors_name": lambda: self.data[reference].append(Actor(result[reference]["value"], [])),
-            "film_name": lambda: self.data[reference].append(Date(result[reference]["value"], result["film_name"]["value"]))
+            "actors_name": lambda: self.data[reference].append(Actor(result["actors_name"]["value"], result["film_name"]["value"])),
+            "film_name": lambda: self.data[reference].append(Date(result["date"]["value"], result["film_name"]["value"]))
         }
         for result in dict["results"]["bindings"]:
             lambdaSwitch[reference]()
@@ -41,3 +42,9 @@ class SparQL():
         print(len(self.data[self.call_reference]))
         
         self.getDataFromJson(dict, self.call_reference)
+        
+
+if __name__ == "__main__":
+    spql = SparQL("film_name", "2001")
+    spql = SparQL("actors_name", "The Matrix")
+    spql.execute()

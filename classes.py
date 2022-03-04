@@ -1,7 +1,7 @@
 class Actor():
-    def __init__(self, name, movies):
+    def __init__(self, name, movie):
         self.name = name
-        self.movies = movies
+        self.movie = movie
         
 class Date():
     def __init__(self, date, movie):
